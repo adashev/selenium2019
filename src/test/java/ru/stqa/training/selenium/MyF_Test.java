@@ -25,6 +25,7 @@ public class MyF_Test {
     public void myFirstTest() {
         driver.get("https://yandex.ru");
         WebElement q = driver.findElement(By.id("text"));
+        driver.navigate().refresh();
         q.sendKeys("интерфакс");
         //driver.findElement(By.id("text")).sendKeys("интерфакс");
         driver.findElement(By.className("search2__button")).click();
