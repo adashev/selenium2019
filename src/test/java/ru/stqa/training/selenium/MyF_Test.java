@@ -7,8 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 
 public class MyF_Test {
@@ -18,17 +22,21 @@ public class MyF_Test {
     @Before
     public void start () {
         driver = new ChromeDriver(); //конструирование объекта (инициализация драйвера и браузера)
-        wait = new WebDriverWait(driver,10);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver,4);
     }
 
     @Test
-    public void myFirstTest() {
-        driver.get("https://yandex.ru");
-        WebElement q = driver.findElement(By.id("text"));
-        driver.navigate().refresh();
-        q.sendKeys("интерфакс");
-        //driver.findElement(By.id("text")).sendKeys("интерфакс");
-        driver.findElement(By.className("search2__button")).click();
+    public void myFirstTest() throws InterruptedException {
+        driver.get("https://www.google.ru/");
+        driver.findElement(By.cssSelector(".MiYK0e")).click();
+        driver.findElement(By.id("K32")).click();
+        driver.findElement(By.cssSelector(".MiYK0e")).click();
+        
+        driver.findElement(By.cssSelector(".gLFyf.gsfi")).sendKeys("webdriwer");
+        driver.findElement(By.className("gNO89b")).click();
+
+        wait.until(titleIs("webdriwer - Поиск в Google"));
     }
 
     /*@After
